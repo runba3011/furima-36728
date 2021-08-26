@@ -26,7 +26,7 @@
 |send_cost_id  |integer        |null: false |どちらが、送料を負担するか、active_hashを使用 |
 |prefecture_id |integer        |null: false |発送元の地域、active_hashを使用            |
 |send_limit_id |integer        |null: false |発送までの日数、active_hashを使用          |
-|price         |integer        |null: false , numericality: {:greater_than_or_equal_to: 300 , less_than_or_equal_to: 9999999}|商品の値段|
+|price         |integer        |null: false |商品の値段                               |
 |user          |references     |null: false |出品したユーザーのID                       |
 
 - belongs_to :user
@@ -46,14 +46,22 @@
 ## Addressテーブル
 |column          |type       |options     |explain                      |
 |----------------|-----------|------------|-----------------------------|
-|post_number     |integer    |null: false |郵便番号                      |
+|post_number     |string     |null: false |郵便番号                      |
 |prefecture_id   |integer    |null: false |発送先の地域、active_hashを使用 |
 |city            |string     |null: false |発送先の市名                   |
 |building_number |string     |null: false |発送先の番地                   |
 |building_name   |string     |            |発送先の建物の名前              |
-|phone_number    |integer    |null: false |電話番号                      |
-|item            |references |null: false |配送する商品のID               |
-|user            |references |null: false |配送する先のユーザーのID         |
+|phone_number    |string     |null: false |電話番号                      |
+|history         |references |null: false |購入者と商品                   |
 
 - belongs_to :user
 - belongs_to :item
+- belongs_to :history
+
+## Historiesテーブル
+|column |type      |options     |explain           |
+|-------|----------|------------|------------------|
+|user   |references|null: false |配送する先のユーザー |
+|item   |references|null: false |購入した商品        |
+
+- has_one :address
