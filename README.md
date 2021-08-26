@@ -59,7 +59,7 @@
 |phone_number    |integer |null: false , null:false, format:{with: /\A[0-9]+\z/}, numericality: {only_intger: true}|電話番号                      |
 |id              |integer |null: false                                                                             |自動で生成されるID              |
 |item_id         |integer |null: false                                                                             |配送する商品のID               |
-|user_id         |integer |null: false                                                                             |配送する先のユーザー            |
+|user_id         |integer |null: false                                                                             |配送する先のユーザーのID         |
 
 - belongs_to :user
 - belongs_to :item
