@@ -4,7 +4,7 @@
 |column             |type    |options                        |explain                                |
 |-------------------|--------|-------------------------------|---------------------------------------|
 |nickname           |string  |null: false                    |ニックネーム                             |
-|email              |string  |null: false , uniqueness: true |メールアドレス                           |
+|email              |string  |null: false , unique: true     |メールアドレス                           |
 |encrypted_password |string  |null: false                    |パスワード                              |
 |first_name         |string  |null: false                    |本名の苗字                              |
 |last_name          |string  |null: false                    |本名の名前                              |
@@ -14,7 +14,7 @@
 
 - has_many :items
 - has_many :comments
-- has_many :historys
+- has_many :histories
 
 
 ## Itemsテーブル
@@ -45,7 +45,7 @@
 - belongs_to :item
 - belongs_to :user
 
-## Addressテーブル
+## Addressesテーブル
 |column          |type       |options                         |explain                      |
 |----------------|-----------|--------------------------------|-----------------------------|
 |post_number     |string     |null: false                     |郵便番号                      |
@@ -58,7 +58,7 @@
 
 - belongs_to :history
 
-## Historysテーブル
+## Historiesテーブル
 |column |type      |options                        |explain           |
 |-------|----------|-------------------------------|------------------|
 |user   |references|null: false , foreign_key: true|配送する先のユーザー |
