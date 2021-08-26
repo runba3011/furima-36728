@@ -37,3 +37,14 @@
 |user_id |integer |null: false |コメントを投稿したユーザーのID|
 |item_id |integer |null: false |コメントを投稿した先の商品のID|
 |text    |text    |null: false |コメントの内容              |
+
+## Addressテーブル
+|column          |type    |options                                                                                 |explain                      |
+|----------------|--------|----------------------------------------------------------------------------------------|-----------------------------|
+|post_number     |integer |null: false                                                                             |郵便番号                      |
+|prefecture      |integer |null:false, format:{with: /\A[0-9]+\z/}, numericality: {only_intger: true}              |発送先の地域、active_hashを使用 |
+|city            |string  |null: false                                                                             |発送先の市名                   |
+|building_number |string  |null: false                                                                             |発送先の番地                   |
+|building_name   |string  |                                                                                        |発送先の建物の名前              |
+|phone_number    |integer |null: false , null:false, format:{with: /\A[0-9]+\z/}, numericality: {only_intger: true}|電話番号                       |
+|id              |integer |null: false                                                                             |null: false|自動で生成されるID  |
