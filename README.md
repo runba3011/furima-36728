@@ -14,23 +14,25 @@
 
 - has_many :items
 - has_many :comments
+- has_many :historys
 
 
 ## Itemsテーブル
 |column        |type           |options       |explain                                |
 |--------------|---------------|--------------|------------------------------------|
-|name          |string         |null: false , length{maximum: 75}|商品の名前                                |
-|explain       |text           |            |商品の説明                                |
-|category_id   |integer        |null: false |商品のカテゴリー、active_hashを使用         |
-|status_id     |integer        |null: false |商品の状態、active_hashを使用              |
-|send_cost_id  |integer        |null: false |どちらが、送料を負担するか、active_hashを使用 |
-|prefecture_id |integer        |null: false |発送元の地域、active_hashを使用            |
-|send_limit_id |integer        |null: false |発送までの日数、active_hashを使用          |
-|price         |integer        |null: false |商品の値段                               |
-|user          |references     |null: false |出品したユーザーのID                       |
+|name          |string         |null: false   |商品の名前                                |
+|explain       |text           |              |商品の説明                                |
+|category_id   |integer        |null: false   |商品のカテゴリー、active_hashを使用         |
+|status_id     |integer        |null: false   |商品の状態、active_hashを使用              |
+|send_cost_id  |integer        |null: false   |どちらが、送料を負担するか、active_hashを使用 |
+|prefecture_id |integer        |null: false   |発送元の地域、active_hashを使用            |
+|send_limit_id |integer        |null: false   |発送までの日数、active_hashを使用          |
+|price         |integer        |null: false   |商品の値段                               |
+|user          |references     |null: false   |出品したユーザーのID                       |
 
 - belongs_to :user
 - has_many :comments
+- has_one :historys
 
 
 ## Commentsテーブル
@@ -54,14 +56,14 @@
 |phone_number    |string     |null: false |電話番号                      |
 |history         |references |null: false |購入者と商品                   |
 
-- belongs_to :user
-- belongs_to :item
 - belongs_to :history
 
-## Historiesテーブル
+## Historysテーブル
 |column |type      |options     |explain           |
 |-------|----------|------------|------------------|
 |user   |references|null: false |配送する先のユーザー |
 |item   |references|null: false |購入した商品        |
 
 - has_one :address
+- belongs_to :item
+- belongs_to :user
