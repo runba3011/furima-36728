@@ -14,6 +14,9 @@
 |birthday_day|integer |null:false, format:{with: /\A[0-9]+\z/}, numericality: {only_intger: true}|誕生日                                   |
 |point       |integer |null:false, format:{with: /\A[0-9]+\z/}, numericality: {only_intger: true}|所有しているポイント、登録当初は0ポイントとなる |
 
+- has_many :items
+- has_many :comments
+
 
 ## Itemsテーブル
 |column     |type           |options       |explain                                |
@@ -30,6 +33,10 @@
 |user_id    |integer        |null: false|出品したユーザーのID                       |
 |image      |active storage |null: false|画像、Active Storageを使用                |
 
+- belongs_to :user
+- has_many :comments
+
+
 ## Commentsテーブル
 |column  |type    |options     |explain                  |
 |--------|--------|------------|-------------------------|
@@ -37,6 +44,9 @@
 |user_id |integer |null: false |コメントを投稿したユーザーのID|
 |item_id |integer |null: false |コメントを投稿した先の商品のID|
 |text    |text    |null: false |コメントの内容              |
+
+- belongs_to :item
+- belongs_to :user
 
 ## Addressテーブル
 |column          |type    |options                                                                                 |explain                      |
@@ -46,5 +56,10 @@
 |city            |string  |null: false                                                                             |発送先の市名                   |
 |building_number |string  |null: false                                                                             |発送先の番地                   |
 |building_name   |string  |                                                                                        |発送先の建物の名前              |
-|phone_number    |integer |null: false , null:false, format:{with: /\A[0-9]+\z/}, numericality: {only_intger: true}|電話番号                       |
-|id              |integer |null: false                                                                             |null: false|自動で生成されるID  |
+|phone_number    |integer |null: false , null:false, format:{with: /\A[0-9]+\z/}, numericality: {only_intger: true}|電話番号                      |
+|id              |integer |null: false                                                                             |自動で生成されるID              |
+|item_id         |integer |null: false                                                                             |配送する商品のID               |
+|user_id         |integer |null: false                                                                             |配送する先のユーザー            |
+
+- belongs_to :user
+- belongs_to :item
