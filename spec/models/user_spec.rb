@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'ユーザー新規登録ができるとき' do
-      it 'nickname , first_name , last_name, first_name_reading , last_name_reading , birthday , password , emailが全て揃っており、重複するemailが保存されていないとき' do
+      it 'nickname,first_name,last_name,first_name_reading,last_name_reading,birthday,password,emailが全て揃っており、重複するemailないとき' do
         expect(@user).to be_valid
       end
     end
