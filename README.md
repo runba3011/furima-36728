@@ -29,7 +29,6 @@
 |send_limit_id |integer        |null: false                    |発送までの日数、active_hashを使用          |
 |price         |integer        |null: false                    |商品の値段                               |
 |user          |references     |null: false , foreign_key: true|出品したユーザーのID                       |
-|is_sold_out   |boolean        |                               |売れたかどうか、売れていればtrueになる       |
 
 - belongs_to :user
 - has_many :comments
