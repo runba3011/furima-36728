@@ -7,12 +7,13 @@ RSpec.describe User, type: :model do
     end
 
     context 'ユーザー新規登録ができるとき' do
-      it 'nickname,first_name,last_name,first_name_reading,last_name_reading,birthday,password,emailが全て揃っており、重複するemailがなく、苗字、名前が全角カタカナ、ひらがな、漢字のみで記載されているとき' do
+      it "nickname,first_name,last_name,first_name_reading,last_name_reading,birthday,password,emailが全て揃っており,
+      重複するemailがなく,苗字,名前が全角カタカナ,ひらがな,漢字のみで記載されているとき" do
         expect(@user).to be_valid
       end
 
       it 'passwordが半角英数字混同であるとき' do
-        @user.password = "yaju810"
+        @user.password = 'yaju810'
         @user.password_confirmation = @user.password
         expect(@user).to be_valid
       end
@@ -32,15 +33,15 @@ RSpec.describe User, type: :model do
       end
 
       it 'first_nameがひらがな、カタカナ、漢字以外のときに登録できないこと' do
-        @user.first_name = "yaju"
+        @user.first_name = 'yaju'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name is invalid")
+        expect(@user.errors.full_messages).to include('First name is invalid')
       end
 
       it 'last_nameがひらがな、カタカナ、漢字以外のときに登録できないこと' do
-        @user.last_name = "senpai"
+        @user.last_name = 'senpai'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name is invalid")
+        expect(@user.errors.full_messages).to include('Last name is invalid')
       end
 
       it 'last_nameが空のとき' do
@@ -115,14 +116,14 @@ RSpec.describe User, type: :model do
         @user.password = 'ｙaｊu8１0'
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid")
+        expect(@user.errors.full_messages).to include('Password is invalid')
       end
 
       it 'passwordが全て全角のとき' do
         @user.password = 'ｙａｊｕ８１０'
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid")
+        expect(@user.errors.full_messages).to include('Password is invalid')
       end
 
       it 'passwordが数字のみのとき' do
