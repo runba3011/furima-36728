@@ -11,6 +11,6 @@ class User < ApplicationRecord
     validates :first_name_reading , format: {with: /\A[ァ-ヶー－]+\z/}
     validates :last_name_reading, format: {with: /\A[ァ-ヶー－]+\z/}
     validates :birthday
-    validates :password,format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]/}
   end
+  validates :password,format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]/}
 end
