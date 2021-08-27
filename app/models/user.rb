@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :nickname
-    validates :first_name
-    validates :last_name
+    validates :first_name, format: { with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/}
+    validates :last_name, format: { with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/}
     validates :first_name_reading, format: { with: /\A[ァ-ヶー－]+\z/ }
     validates :last_name_reading, format: { with: /\A[ァ-ヶー－]+\z/ }
     validates :birthday
