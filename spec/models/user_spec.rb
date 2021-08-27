@@ -5,7 +5,6 @@ RSpec.describe User, type: :model do
 
     before do
       @user = FactoryBot.build(:user)
-      @other_user = FactoryBot.create(:user)
     end
 
     context 'ユーザー新規登録ができるとき' do
@@ -69,7 +68,14 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
 
+      it 'emailに@が含まれないとき' do
+        @user.email = 'yajugmail.com'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
+
       it '重複するemailが既に保存されているとき' do
+        @other_user = FactoryBot.create(:user)
         @user.email = @other_user.email
         @user.valid?
         expect(@user.errors.full_messages).to include("Email has already been taken")
