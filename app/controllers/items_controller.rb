@@ -5,6 +5,11 @@ class ItemsController < ApplicationController
     @items = Item.all.order('created_at DESC')
   end
 
+  def show
+    @item = Item.find(params[:id])
+    @item.user = User.find(@item.user_id)
+  end
+
   def create
     @item = Item.new(item_params)
     if @item.valid?
