@@ -136,6 +136,18 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price is not a number')
       end
 
+      it 'priceが半角英字を含むとき' do
+        @item.price = 'yaju810'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+
+      it 'priceが全角文字を含むとき' do
+        @item.price = 'ｙａｊｕ８１０yaju810'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+
       it 'userが空のとき' do
         @item.user = nil
         @item.valid?
