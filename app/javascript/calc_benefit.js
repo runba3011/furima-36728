@@ -1,5 +1,4 @@
 const calc = () =>{
-  console.log("計算用のスクリプトです");
   const commission_rate = 0.1 //販売手数料の割合
 
   const root_price = document.getElementById('item-price');
