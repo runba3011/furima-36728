@@ -7,7 +7,7 @@ const calc = () =>{
   const profit = document.getElementById('profit'); //root_priceから販売手数料を引いた額
 
   root_price.addEventListener('input' , ()=>{
-    commission.innerHTML = root_price.value * commission_rate;
+    commission.innerHTML = Math.floor(root_price.value * commission_rate);
     profit.innerHTML = root_price.value - commission.innerHTML;
   })
 }
