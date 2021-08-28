@@ -55,7 +55,7 @@ RSpec.describe Item, type: :model do
       it 'category_idが0のとき' do
         @item.category_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 0")
+        expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
       it 'status_idが空のとき' do
@@ -67,7 +67,7 @@ RSpec.describe Item, type: :model do
       it 'status_idが0のとき' do
         @item.status_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status must be other than 0")
+        expect(@item.errors.full_messages).to include("Status can't be blank")
       end
 
       it 'send_cost_idが空のとき' do
@@ -79,7 +79,7 @@ RSpec.describe Item, type: :model do
       it 'send_cost_idが0のとき' do
         @item.send_cost_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Send cost must be other than 0")
+        expect(@item.errors.full_messages).to include("Send cost can't be blank")
       end
 
       it 'prefecture_idが空のとき' do
@@ -91,7 +91,7 @@ RSpec.describe Item, type: :model do
       it 'prefecture_idが0のとき' do
         @item.prefecture_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
 
       it 'send_limit_idが空のとき' do
@@ -103,7 +103,7 @@ RSpec.describe Item, type: :model do
       it 'send_limit_idが0のとき' do
         @item.send_limit_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Send limit must be other than 0")
+        expect(@item.errors.full_messages).to include("Send limit can't be blank")
       end
 
       it 'priceが空のとき' do
