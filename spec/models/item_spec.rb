@@ -27,7 +27,7 @@ RSpec.describe Item, type: :model do
         end
         @item.name = name
         @item.valid?
-        expect(@item.errors.full_messages).to include("Name is too long (maximum is 40 characters)")
+        expect(@item.errors.full_messages).to include('Name is too long (maximum is 40 characters)')
       end
 
       it 'explainが空のとき' do
@@ -43,7 +43,7 @@ RSpec.describe Item, type: :model do
         end
         @item.explain = explain
         @item.valid?
-        expect(@item.errors.full_messages).to include("Explain is too long (maximum is 1000 characters)")
+        expect(@item.errors.full_messages).to include('Explain is too long (maximum is 1000 characters)')
       end
 
       it 'category_idが空のとき' do
@@ -112,28 +112,28 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
-      it 'priceが300未満のとき'do
+      it 'priceが300未満のとき' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
 
-      it 'priceが9999999より大きいとき'do
-        @item.price = 10000000
+      it 'priceが9999999より大きいとき' do
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
 
       it 'priceが小数点以下を含むとき' do
         @item.price = 500.3
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be an integer")
+        expect(@item.errors.full_messages).to include('Price must be an integer')
       end
 
       it 'priceが半角数字以外を含むとき' do
         @item.price = 'yaju810８１０'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
 
       it 'userが空のとき' do
