@@ -48,7 +48,7 @@ class ItemsController < ApplicationController
     # 出品したユーザーと同じユーザーであるかを確認する
     if user_signed_in?
       @item = Item.find(params[:id])
-      redirect_to item_path if @item.user.id != current_user.id
+      redirect_to root_path if @item.user.id != current_user.id
     end
   end
 end
