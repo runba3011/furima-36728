@@ -46,7 +46,7 @@ class ItemsController < ApplicationController
 
   def confirm_same_user
     # 出品したユーザーと同じユーザーであるかを確認する
-    unless user_signed_in?
+    if user_signed_in?
       @item = Item.find(params[:id])
       redirect_to item_path if @item.user.id != current_user.id
     end
