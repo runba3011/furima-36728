@@ -26,7 +26,7 @@
     <%# 【購入機能実装時、同時に実装予定】売却済みであれば商品の編集、削除、購入画面に進むのどれも表示しないこと %>
     <% if user_signed_in?  %>
       <% if current_user == @item.user %>
-        <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
+        <%= link_to "商品の編集", edit_item_path(@item), method: :get, class: "item-red-btn" %>
         <p class="or-text">or</p>
         <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
 
