@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :confirm_same_user , only: :edit
+  before_action :confirm_same_user, only: :edit
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -35,12 +35,9 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
-
   end
 
   private
-
-
 
   def item_params
     params.require(:item).permit(:category_id, :image, :name, :explain, :category_id, :status_id, :send_cost_id,
@@ -49,11 +46,9 @@ class ItemsController < ApplicationController
 
   def confirm_same_user
     # 出品したユーザーと同じユーザーであるかを確認する
-    if user_signed_in?
+    unless user_signed_in?
       @item = Item.find(params[:id])
-      if @item.user.id != current_user.id
-        redirect_to item_path
-      end
+      redirect_to item_path if @item.user.id != current_user.id
     end
   end
 end
