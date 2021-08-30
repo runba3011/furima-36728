@@ -1,15 +1,22 @@
 const calc = () =>{
-  const commission_rate = 0.1 //販売手数料の割合
+  const commission_rate = 0.1 
 
   const root_price = document.getElementById('item-price');
-  const commission = document.getElementById('add-tax-price'); //販売手数料、root_priceの１０％
-  const profit = document.getElementById('profit'); //root_priceから販売手数料を引いた額
+  const commission = document.getElementById('add-tax-price'); 
+  const profit = document.getElementById('profit'); 
 
-  root_price.addEventListener('input' , ()=>{
+  const calculate =  function(){
     commission.innerHTML = Math.floor(root_price.value * commission_rate);
     profit.innerHTML = root_price.value - commission.innerHTML;
-  })
+  }
+
+  if(root_price.value != ''){
+    calculate();
+  };
+
+  root_price.addEventListener('input' , calculate);
 }
+
 
 
 window.addEventListener('load' , calc);
