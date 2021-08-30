@@ -6,7 +6,6 @@ class OrderController < ApplicationController
 
   def create
     @history_address = HistoryAddress.new(history_address_param)
-    binding.pry
     if @history_address.valid?
       @history_address.save
       redirect_to root_path
