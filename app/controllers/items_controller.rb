@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :destroy]
   before_action :find_item , only: [:show,:edit,:update , :destroy]
-  before_action :confirm_same_user, only: [:edit , :update, :destroy]
+  before_action :edit_limit, only: [:edit , :update, :destroy]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -47,11 +47,38 @@ class ItemsController < ApplicationController
                                   :prefecture_id, :send_limit_id, :price).merge(user_id: current_user.id)
   end
 
+  # 同じ処理を使用する頻度が高いものをまとめたもの、単品だけで呼ぶことはまずない↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+  # 誤って単品だけで呼ぶ処理を作成したときにわかりやすくするためコメントアウトは残しておいてください
+
+  # paramから該当するItemを探すための処理
+  # なんの処理かわかるようにするためにコメントアウトは残しておいてください
   def find_item
     @item = Item.find(params[:id])
   end
 
-  def confirm_same_user
-    redirect_to root_path if @item.user.id != current_user.id
+  # itemの出品者と、現在ログインしているユーザーが同じであればtrueを返す処理
+  # なんの処理かわかるようにするためにコメントアウトは残しておいてください
+  def only_confirm_same_user
+    @item.user.id == current_user.id
+  end
+
+  # Itemが売れているならtrueを返す処理
+  # なんの処理かわかるようにするためにコメントアウトは残しておいてください
+  def only_confirm_item_sold
+    @item.history != nil
+  end
+
+  # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+  def edit_limit
+    if !only_confirm_same_user
+      redirect_to root_path
+    end
+  end
+
+  def confirm_item_sold
+    if only_confirm_item_sold
+      redirect_to root_path
+    end
   end
 end
