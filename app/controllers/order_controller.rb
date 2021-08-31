@@ -1,4 +1,5 @@
 class OrderController < ApplicationController
+  before_action :find_item
   before_action :buy_limit
 
   def index
@@ -29,7 +30,7 @@ class OrderController < ApplicationController
   # paramから該当するItemを探すための処理
   # なんの処理かわかるようにするためにコメントアウトは残しておいてください
   def find_item
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:item_id])
   end
 
   # itemの出品者と、現在ログインしているユーザーが同じであればtrueを返す処理
