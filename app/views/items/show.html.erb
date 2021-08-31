@@ -33,7 +33,7 @@
 
       <% else %>
         <% if @item.history == nil %>
-          <%= link_to "購入画面に進む", order_path(@item) ,class:"item-red-btn"%>
+          <%= link_to "購入画面に進む", item_order_index_path(@item) ,class:"item-red-btn"%>
         <% end %>
       <% end %>
     <% end %>
