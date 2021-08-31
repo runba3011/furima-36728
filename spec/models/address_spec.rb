@@ -103,10 +103,17 @@ RSpec.describe Address, type: :model do
       expect(@address.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
     end
     
-    it 'historyが空のとき' do
+    it 'historyと紐づいていないとき' do
       @address.history = nil
       @address.valid?
       expect(@address.errors.full_messages).to include("History can't be blank")
+    end
+
+    it 'tokenが空のとき' do
+      binding.pry
+      @address.token = nil
+      @address.valid?
+      expect(@address.errors.full_messages).to include("Token can't be blank")
     end
   end
 end
