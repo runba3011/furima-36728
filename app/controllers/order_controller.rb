@@ -10,8 +10,13 @@ class OrderController < ApplicationController
   def create
     @history_address = HistoryAddress.new(history_address_params)
     binding.pry
-    @history_address = HistoryAddress.new(history_address_param)
     if @history_address.valid?
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+      Payjp::Charge.create(
+        amount: @item.price.to_s,
+        card: history_address_params[:token],
+        currency: 'jpy'
+      )
       @history_address.save
       redirect_to root_path
     else
@@ -20,7 +25,6 @@ class OrderController < ApplicationController
   end
 
   private
-  def history_address_param
   def history_address_params
     params.require(:history_address).permit(:post_number , :prefecture_id , :city ,:building_number , :building_name ,:phone_number).merge(user_id: current_user.id , item_id: params[:item_id] , token: params[:token])
   end
