@@ -110,7 +110,6 @@ RSpec.describe Address, type: :model do
     end
 
     it 'tokenが空のとき' do
-      binding.pry
       @address.token = nil
       @address.valid?
       expect(@address.errors.full_messages).to include("Token can't be blank")
