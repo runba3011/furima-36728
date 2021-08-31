@@ -70,8 +70,9 @@ class ItemsController < ApplicationController
 
   # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
+
   def edit_limit
-    if !only_confirm_same_user
+    if !only_confirm_same_user || only_confirm_item_sold
       redirect_to root_path
     end
   end
