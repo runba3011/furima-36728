@@ -1,4 +1,5 @@
 class OrderController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_item
   before_action :buy_limit
 
