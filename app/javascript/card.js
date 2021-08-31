@@ -1,5 +1,5 @@
 const pay = () => {
-  Payjp.setPublicKey(process.env.PAYJP_PUBLICK_KEY);
+  Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
 
   console.log("カード支払いのためのスクリプト");
   const submit = document.getElementById('button');
