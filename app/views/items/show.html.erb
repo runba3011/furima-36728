@@ -24,7 +24,7 @@
       </span>
     </div>
 
-    <%# 【購入機能実装時、同時に実装予定】売却済みであれば商品の編集、削除、購入画面に進むのどれも表示しないこと %>
+    <% if @item.history == nil %>
     <% if user_signed_in?  %>
       <% if current_user == @item.user %>
         <%= link_to "商品の編集", edit_item_path(@item), method: :get, class: "item-red-btn" %>
@@ -37,7 +37,7 @@
         <% end %>
       <% end %>
     <% end %>
-
+    <% end %>
 
     <div class="item-explain-box">
       <span><%= @item.explain %></span>
