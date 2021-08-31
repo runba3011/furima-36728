@@ -13,7 +13,7 @@ class OrderController < ApplicationController
       @history_address.save
       redirect_to root_path
     else
-      render :show
+      render :index
     end
   end
 
