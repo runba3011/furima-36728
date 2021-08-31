@@ -1,13 +1,13 @@
 class OrderController < ApplicationController
-  before_action :find_item
   before_action :buy_limit
 
-  def show
-    @item = Item.find(params[:id])
+  def index
+    @item = Item.find(params[:item_id])
     @history_address = HistoryAddress.new
   end
 
   def create
+    binding.pry
     @history_address = HistoryAddress.new(history_address_param)
     if @history_address.valid?
       @history_address.save
@@ -19,7 +19,7 @@ class OrderController < ApplicationController
 
   private
   def history_address_param
-    params.require(:history_address).permit(:post_number , :prefecture_id , :city ,:building_number , :building_name ,:phone_number).merge(user_id: current_user.id , item_id: params[:item_id])
+    params.require(:history_address).permit(:post_number , :prefecture_id , :city ,:building_number , :building_name ,:phone_number).merge(user_id: current_user.id , item_id: params[:item_id] , token: params[:token])
   end
 
 
