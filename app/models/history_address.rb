@@ -16,7 +16,5 @@ class HistoryAddress
   def save
     @history = History.create(user_id: user_id , item_id: item_id)
     @address =  Address.create(post_number: post_number , prefecture_id: prefecture_id , city: city , building_number: building_number , phone_number: phone_number , building_name: building_name , history_id: @history.id) 
-    binding.pry
-    
   end
 end

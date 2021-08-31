@@ -9,7 +9,6 @@ class OrderController < ApplicationController
 
   def create
     @history_address = HistoryAddress.new(history_address_params)
-    binding.pry
     if @history_address.valid?
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
