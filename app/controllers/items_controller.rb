@@ -76,10 +76,4 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
   end
-
-  def confirm_item_sold
-    if only_confirm_item_sold
-      redirect_to root_path
-    end
-  end
 end
