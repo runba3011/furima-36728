@@ -1,5 +1,9 @@
 class Address < ApplicationRecord
+  attr_accessor :token
+  # history_address.rbで保存するようにする前についていたバリデーションになります。
+  # テストコードを使用するときのみ一時的にコメントアウトをはずすようにしてありますので残しておくようよろしくお願いします。
   # with_options presence: true do
+  #   validates :token
   #   validates :post_number , format: {with: /\A\d{3}[-]\d{4}\z/}
   #   validates :prefecture_id , numericality: {only_integer: true , greater_than: 0 , message: "can't be blank"}
   #   validates :city
