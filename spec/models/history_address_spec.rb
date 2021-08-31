@@ -39,7 +39,6 @@ RSpec.describe HistoryAddress, type: :model do
     end
   end
 
-
   describe '発送先の情報を保存できず、それによって購入履歴も保存できないとき' do
     it 'post_numberが空のとき' do
       @history_address.post_number = nil
@@ -125,4 +124,12 @@ RSpec.describe HistoryAddress, type: :model do
       expect(@history_address.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
     end
   end
+
+  describe 'トークンの情報が含まれておらず、それによって他のものも保存できない時' do
+    it 'トークンが空のとき' do
+      @history_address.token = nil
+      @history_address.valid?
+      expect(@history_address.errors.full_messages).to include("Token can't be blank")
+    end
+  end 
 end
