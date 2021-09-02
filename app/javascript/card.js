@@ -28,7 +28,11 @@ const pay = () => {
 
         document.getElementById("charge-form").submit();
       }
+      else{
+        document.getElementById("charge-form").submit();
+      }
     });
+
 
   });
 };

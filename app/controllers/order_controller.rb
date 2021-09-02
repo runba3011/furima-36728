@@ -10,7 +10,8 @@ class OrderController < ApplicationController
 
   def create
     @history_address = HistoryAddress.new(history_address_params)
-    if @history_address.valid?
+    binding.pry
+    if @history_address.valid? && params[:token] != nil
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
         amount: @item.price.to_s,
